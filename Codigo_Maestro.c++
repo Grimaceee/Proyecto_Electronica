@@ -52,3 +52,17 @@ void loop() {
     int posDosis = map(dosisValue, 1, 3, 0, 180);  // Mapeo de la dosis a posición del servo
     servoDolor.write(posDolor);
     servoDosis.write(posDosis);
+
+    switch (estado) {
+  case 1:
+    PULSO = map(analogRead(fotoresistorPin), 0, 1023, 54, 120);
+    enviarDatosEsclavo("MSG0PULSO:" + String(PULSO) + " LATIDOS:");
+    if (PULSO >= 61 && PULSO <= 89) {
+      enviarDatosEsclavo("MSG1NORMALES");
+    } else if (PULSO >= 54 && PULSO <= 60) {
+      enviarDatosEsclavo("MSG1MUY BAJOS");
+    } else if (PULSO >= 90 && PULSO <= 120){
+      enviarDatosEsclavo("MSG1ANORMALES");
+    }
+    delay(3000);
+    break;
