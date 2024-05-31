@@ -117,3 +117,19 @@ void loop() {
         delay(1000);
       }
       break;
+    case 6:
+      // Lógica para el estado 6: Dolor bajo (1-4)
+      if (dolorValue >= 1 && dolorValue <= 4) {
+        enviarDatosEsclavo("MSG0Dolor: Bajo");
+        if (dosisValue == 1) {
+          enviarDatosEsclavo("MSG1Dosis: Adecuada");
+        } else if (dosisValue == 2 || dosisValue == 3) {
+          enviarDatosEsclavo("MSG1Dosis: Alta");
+        }
+        delay(3000);
+      } else {
+        enviarDatosEsclavo("MSG0Tu dolor no esta");
+        enviarDatosEsclavo("MSG1en el rango bajo");
+        delay(1000);
+      }
+      break;
