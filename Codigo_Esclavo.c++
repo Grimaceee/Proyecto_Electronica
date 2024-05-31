@@ -12,3 +12,7 @@ void setup() {
   // Inicializar la LCD con 16 columnas y 2 filas
   lcd.begin(16, 2);
 }
+
+void loop() {
+  delay(100); // Agregar un pequeño retraso para evitar que el bucle se ejecute demasiado rápido
+}
