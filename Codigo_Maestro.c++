@@ -64,9 +64,9 @@ void loop() {
       } else if (PULSO >= 90 && PULSO <= 120){
         enviarDatosEsclavo("MSG1ANORMALES");
       }
-    delay(3000);
-    break;
-      case 2:
+      delay(3000);
+      break;
+     case 2:
       tempValue = map(analogRead(tempPotPin), 0, 1010, 361, 380) / 10.0;
       enviarDatosEsclavo("MSG0Temp: " + String(tempValue));
       if (tempValue == 36.1) {
@@ -78,4 +78,9 @@ void loop() {
       }
       delay(3000);
       break;
+      case 3:
+        enviarDatosEsclavo("MSG0Dolor: " + String(dolorValue));
+        enviarDatosEsclavo("MSG1Dosis: " + String(dosisValue));
+        delay(3000);
+        break;
   
