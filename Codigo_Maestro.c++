@@ -99,3 +99,21 @@ void loop() {
           delay(1000);
         }
         break;
+    case 5:
+      // Lógica para el estado 5: Dolor medio (5-7)
+      if (dolorValue >= 5 && dolorValue <= 7) {
+        enviarDatosEsclavo("MSG0Dolor: Medio");
+        if (dosisValue == 1) {
+          enviarDatosEsclavo("MSG1Dosis: Baja");
+        } else if (dosisValue == 2) {
+          enviarDatosEsclavo("MSG1Dosis: Adecuada");
+        } else if (dosisValue == 3) {
+          enviarDatosEsclavo("MSG1Dosis: Alta");
+        }
+        delay(3000);
+      } else {
+        enviarDatosEsclavo("MSG0Tu dolor no esta");
+        enviarDatosEsclavo("MSG1en el rango medio");
+        delay(1000);
+      }
+      break;
