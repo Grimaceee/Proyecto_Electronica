@@ -78,9 +78,24 @@ void loop() {
       }
       delay(3000);
       break;
-      case 3:
+    case 3:
         enviarDatosEsclavo("MSG0Dolor: " + String(dolorValue));
         enviarDatosEsclavo("MSG1Dosis: " + String(dosisValue));
         delay(3000);
         break;
-  
+    case 4:
+        // Lógica para el estado 4: Dolor alto (8-10)
+        if (dolorValue >= 8 && dolorValue <= 10) {
+          enviarDatosEsclavo("MSG0Dolor: Alto");
+          if (dosisValue == 1 || dosisValue == 2) {
+            enviarDatosEsclavo("MSG1Dosis: Baja");
+          } else if (dosisValue == 3) {
+            enviarDatosEsclavo("MSG1Dosis: Adecuada");
+          }
+          delay(3000);
+        } else {
+          enviarDatosEsclavo("MSG0Tu dolor no esta");
+          enviarDatosEsclavo("MSG1en el rango alto");
+          delay(1000);
+        }
+        break;
