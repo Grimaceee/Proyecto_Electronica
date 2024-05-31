@@ -36,3 +36,11 @@ void setup() {
   // Mostrar mensaje inicial
   enviarDatosEsclavo("MSG0PRESIONA EL BOTON");
 }
+
+void loop() {
+  while (digitalRead(startButtonPin) == LOW) {
+    delay(100);
+  }
+
+  enviarDatosEsclavo("MSG0INICIANDO...");
+  estado = 1;
