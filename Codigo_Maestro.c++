@@ -44,3 +44,11 @@ void loop() {
 
   enviarDatosEsclavo("MSG0INICIANDO...");
   estado = 1;
+   while (true) {
+    // Actualizar los valores de los potenciómetros y los servos
+    dolorValue = map(analogRead(dolorPotPin), 0, 1023, 1, 10);
+    dosisValue = map(analogRead(dosisPotPin), 0, 1023, 1, 3);
+    int posDolor = map(dolorValue, 1, 10, 0, 180); // Mapeo del dolor a posición del servo
+    int posDosis = map(dosisValue, 1, 3, 0, 180);  // Mapeo de la dosis a posición del servo
+    servoDolor.write(posDolor);
+    servoDosis.write(posDosis);
