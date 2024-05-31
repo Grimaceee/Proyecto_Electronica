@@ -143,3 +143,9 @@ while (digitalRead(startButtonPin) == LOW) {
   delay(100);
 }
 estado++;
+
+void enviarDatosEsclavo(String mensaje) {
+  Wire.beginTransmission(8); // Transmitir al dispositivo #8
+  Wire.write(mensaje.c_str(), mensaje.length()); // Enviar mensaje
+  Wire.endTransmission(); // Finalizar transmisión
+}
