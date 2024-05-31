@@ -54,15 +54,28 @@ void loop() {
     servoDosis.write(posDosis);
 
     switch (estado) {
-  case 1:
-    PULSO = map(analogRead(fotoresistorPin), 0, 1023, 54, 120);
-    enviarDatosEsclavo("MSG0PULSO:" + String(PULSO) + " LATIDOS:");
-    if (PULSO >= 61 && PULSO <= 89) {
-      enviarDatosEsclavo("MSG1NORMALES");
-    } else if (PULSO >= 54 && PULSO <= 60) {
-      enviarDatosEsclavo("MSG1MUY BAJOS");
-    } else if (PULSO >= 90 && PULSO <= 120){
-      enviarDatosEsclavo("MSG1ANORMALES");
-    }
+      case 1:
+      PULSO = map(analogRead(fotoresistorPin), 0, 1023, 54, 120);
+      enviarDatosEsclavo("MSG0PULSO:" + String(PULSO) + " LATIDOS:");
+      if (PULSO >= 61 && PULSO <= 89) {
+        enviarDatosEsclavo("MSG1NORMALES");
+      } else if (PULSO >= 54 && PULSO <= 60) {
+        enviarDatosEsclavo("MSG1MUY BAJOS");
+      } else if (PULSO >= 90 && PULSO <= 120){
+        enviarDatosEsclavo("MSG1ANORMALES");
+      }
     delay(3000);
     break;
+      case 2:
+      tempValue = map(analogRead(tempPotPin), 0, 1010, 361, 380) / 10.0;
+      enviarDatosEsclavo("MSG0Temp: " + String(tempValue));
+      if (tempValue == 36.1) {
+        enviarDatosEsclavo("MSG1Temperatura normal");
+      } else if (tempValue == 38.0) {
+        enviarDatosEsclavo("MSG1Infeccion");
+      } else if (tempValue > 36.1 && tempValue < 38.0) {
+        enviarDatosEsclavo("MSG1Fiebre");
+      }
+      delay(3000);
+      break;
+  
