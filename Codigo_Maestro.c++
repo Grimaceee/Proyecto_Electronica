@@ -133,3 +133,13 @@ void loop() {
         delay(1000);
       }
       break;
+    case 7:
+      enviarDatosEsclavo("MSG0PRESIONA EL BOTON");
+      estado = 0;
+      break;
+}
+// Esperar a que el botón sea presionado para pasar al siguiente estado
+while (digitalRead(startButtonPin) == LOW) {
+  delay(100);
+}
+estado++;
